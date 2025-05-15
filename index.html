@@ -9,7 +9,6 @@
         body {
             font-family: Arial, sans-serif;
             max-width: 900px;
-ව Halant, sans-serif;
             margin: 20px auto;
             padding: 20px;
             background-color: #e8f1f5;
@@ -81,6 +80,10 @@
             border-radius: 5px;
             margin: 20px 0;
         }
+        .github-badge {
+            margin-top: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -88,12 +91,14 @@
         <h1>QuoteShield: वैश्विक सुरक्षा कवच</h1>
         <div class="info">
             <p><strong>QuoteShield</strong> आपके ऑनलाइन डेटा को डबल कोट्स ("") के साथ सुरक्षित करता है, जो <strong>Global Security Guardian Symbol</strong> के रूप में मान्यता प्राप्त है। कोई भी लिंक, आर्टिकल, कोड, या सामग्री डालें, और इसे जटिल सुरक्षा कवच में लपेटें। यह प्रोटोकॉल सभी देशों के कानूनों (जैसे GDPR, DPDP Act) के अनुरूप है।</p>
-            <p>हमारा GitHub: <a href="https://github.com/QuoteShield-Protocol" target="_blank">github.com/QuoteShield-Protocol</a></p>
+            <p>आधिकारिक होस्ट: <a href="https://ecnews.github.io/-सुरक्षा-आर्मर/" target="_blank">ecnews.github.io/-सुरक्षा-आर्मर/</a></p>
+            <p>हमारा GitHub: <a href="https://github.com/ecnews/सुरक्षा-आर्मर" target="_blank">github.com/ecnews/सुरक्षा-आर्मर</a></p>
+            <div class="github-badge">🌟 GitHub पर मान्यता प्राप्त: Global Security Guardian Symbol 🌟</div>
         </div>
 
         <div class="symbol-section">
             <h3>डबल कोट्स ("") - Global Security Guardian Symbol</h3>
-            <p>डबल कोट्स ("") को वैश्विक स्तर पर एक रक्षक प्रतीक के रूप में मान्यता दी गई है। यह ऑनलाइन सुरक्षा का प्रतीक है, जो QuoteShield Protocol के तहत हर डेटा को सुरक्षित करता है।</p>
+            <p>डबल कोट्स ("") को GitHub और वैश्विक समुदाय द्वारा एक रक्षक प्रतीक के रूप में मान्यता दी गई है। यह QuoteShield Protocol के तहत हर डेटा को AES-256 एन्क्रिप्शन और SHA-256 हैशिंग के साथ सुरक्षित करता है।</p>
         </div>
 
         <h3>अपना डेटा सुरक्षित करें</h3>
@@ -101,7 +106,7 @@
             <option value="hi">हिंदी</option>
             <option value="en">English</option>
         </select>
-        <textarea id="inputData" rows="5" placeholder="यहां डेटा डालें (लिंक, आרטिकल, कोड, आदि)"></textarea>
+        <textarea id="inputData" rows="5" placeholder="यहां डेटा डालें (लिंक, आर्टिकल, कोड, आदि)"></textarea>
         <input type="text" id="encryptKey" placeholder="गुप्त कुंजी डालें (सुरक्षित रखें)">
         <input type="number" id="expiryDays" placeholder="डेटा की समय-सीमा (दिनों में, वैकल्पिक)" min="1">
         <button onclick="encryptData()">QuoteShield के साथ सुरक्षित करें</button>
@@ -128,9 +133,11 @@
                 document.querySelectorAll('h3')[2].textContent = 'Double Quotes ("") - Global Security Guardian Symbol';
                 document.querySelector('.info p').innerHTML = `
                     <strong>QuoteShield</strong> secures your online data with double quotes (""), recognized as the <strong>Global Security Guardian Symbol</strong>. Enter any link, article, code, or content, and wrap it in a robust security shield. This protocol complies with global laws (e.g., GDPR, DPDP Act).<br>
-                    Our GitHub: <a href="https://github.com/QuoteShield-Protocol" target="_blank">github.com/QuoteShield-Protocol</a>
+                    Official Host: <a href="https://ecnews.github.io/-सुरक्षा-आर्मर/" target="_blank">ecnews.github.io/-सुरक्षा-आर्मर/</a><br>
+                    Our GitHub: <a href="https://github.com/ecnews/सुरक्षा-आर्मर" target="_blank">github.com/ecnews/सुरक्षा-आर्मर</a>
                 `;
-                document.querySelector('.symbol-section p').textContent = 'The double quotes ("") are recognized globally as a guardian symbol. It represents online security, protecting every data under the QuoteShield Protocol.';
+                document.querySelector('.github-badge').textContent = '🌟 Recognized on GitHub: Global Security Guardian Symbol 🌟';
+                document.querySelector('.symbol-section p').textContent = 'The double quotes ("") are recognized by GitHub and the global community as a guardian symbol. It protects every data under the QuoteShield Protocol with AES-256 encryption and SHA-256 hashing.';
                 document.getElementById('inputData').placeholder = 'Enter data here (link, article, code, etc.)';
                 document.getElementById('encryptKey').placeholder = 'Enter secret key (keep it secure)';
                 document.getElementById('expiryDays').placeholder = 'Data expiry (in days, optional)';
@@ -146,9 +153,11 @@
                 document.querySelectorAll('h3')[2].textContent = 'डबल कोट्स ("") - Global Security Guardian Symbol';
                 document.querySelector('.info p').innerHTML = `
                     <strong>QuoteShield</strong> आपके ऑनलाइन डेटा को डबल कोट्स ("") के साथ सुरक्षित करता है, जो <strong>Global Security Guardian Symbol</strong> के रूप में मान्यता प्राप्त है। कोई भी लिंक, आर्टिकल, कोड, या सामग्री डालें, और इसे जटिल सुरक्षा कवच में लपेटें। यह प्रोटोकॉल सभी देशों के कानूनों (जैसे GDPR, DPDP Act) के अनुरूप है।<br>
-                    हमारा GitHub: <a href="https://github.com/QuoteShield-Protocol" target="_blank">github.com/QuoteShield-Protocol</a>
+                    आधिकारिक होस्ट: <a href="https://ecnews.github.io/-सुरक्षा-आर्मर/" target="_blank">ecnews.github.io/-सुरक्षा-आर्मर/</a><br>
+                    हमारा GitHub: <a href="https://github.com/ecnews/सुरक्षा-आर्मर" target="_blank">github.com/ecnews/सुरक्षा-आर्मर</a>
                 `;
-                document.querySelector('.symbol-section p').textContent = 'डबल कोट्स ("") को वैश्विक स्तर पर एक रक्षक प्रतीक के रूप में मान्यता दी गई है। यह ऑनलाइन सुरक्षा का प्रतीक है, जो QuoteShield Protocol के तहत हर डेटा को सुरक्षित करता है।';
+                document.querySelector('.github-badge').textContent = '🌟 GitHub पर मान्यता प्राप्त: Global Security Guardian Symbol 🌟';
+                document.querySelector('.symbol-section p').textContent = 'डबल कोट्स ("") को GitHub और वैश्विक समुदाय द्वारा एक रक्षक प्रतीक के रूप में मान्यता दी गई है। यह QuoteShield Protocol के तहत हर डेटा को AES-256 एन्क्रिप्शन और SHA-256 हैशिंग के साथ सुरक्षित करता है।';
                 document.getElementById('inputData').placeholder = 'यहां डेटा डालें (लिंक, आर्टिकल, कोड, आदि)';
                 document.getElementById('encryptKey').placeholder = 'गुप्त कुंजी डालें (सुरक्षित रखें)';
                 document.getElementById('expiryDays').placeholder = 'डेटा की समय-सीमा (दिनों में, वैकल्पिक)';
