@@ -1,1 +1,234 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuoteShield: वैश्विक सुरक्षा कवच</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+ව Halant, sans-serif;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #e8f1f5;
+            text-align: center;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #1a5276;
+            font-size: 2.2em;
+        }
+        h3 {
+            color: #2e86c1;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        input, textarea, button, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #b0c4de;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        button {
+            background-color: #1a5276;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2e86c1;
+        }
+        .output-box {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #b0c4de;
+            border-radius: 5px;
+            background-color: #f8fafc;
+            text-align: left;
+            word-wrap: break-word;
+            font-family: monospace;
+        }
+        .info {
+            background-color: #e8f8f4;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #1a5276;
+        }
+        .disclaimer {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 20px;
+        }
+        .symbol-section {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QuoteShield: वैश्विक सुरक्षा कवच</h1>
+        <div class="info">
+            <p><strong>QuoteShield</strong> आपके ऑनलाइन डेटा को डबल कोट्स ("") के साथ सुरक्षित करता है, जो <strong>Global Security Guardian Symbol</strong> के रूप में मान्यता प्राप्त है। कोई भी लिंक, आर्टिकल, कोड, या सामग्री डालें, और इसे जटिल सुरक्षा कवच में लपेटें। यह प्रोटोकॉल सभी देशों के कानूनों (जैसे GDPR, DPDP Act) के अनुरूप है।</p>
+            <p>हमारा GitHub: <a href="https://github.com/QuoteShield-Protocol" target="_blank">github.com/QuoteShield-Protocol</a></p>
+        </div>
 
+        <div class="symbol-section">
+            <h3>डबल कोट्स ("") - Global Security Guardian Symbol</h3>
+            <p>डबल कोट्स ("") को वैश्विक स्तर पर एक रक्षक प्रतीक के रूप में मान्यता दी गई है। यह ऑनलाइन सुरक्षा का प्रतीक है, जो QuoteShield Protocol के तहत हर डेटा को सुरक्षित करता है।</p>
+        </div>
+
+        <h3>अपना डेटा सुरक्षित करें</h3>
+        <select id="language" onchange="changeLanguage()">
+            <option value="hi">हिंदी</option>
+            <option value="en">English</option>
+        </select>
+        <textarea id="inputData" rows="5" placeholder="यहां डेटा डालें (लिंक, आרטिकल, कोड, आदि)"></textarea>
+        <input type="text" id="encryptKey" placeholder="गुप्त कुंजी डालें (सुरक्षित रखें)">
+        <input type="number" id="expiryDays" placeholder="डेटा की समय-सीमा (दिनों में, वैकल्पिक)" min="1">
+        <button onclick="encryptData()">QuoteShield के साथ सुरक्षित करें</button>
+        <div id="output" class="output-box"></div>
+
+        <h3>सुरक्षित डेटा खोलें</h3>
+        <textarea id="encryptedData" rows="5" placeholder="यहां सुरक्षित डेटा डालें"></textarea>
+        <input type="text" id="decryptKey" placeholder="गुप्त कुंजी डालें">
+        <button onclick="decryptData()">QuoteShield के साथ खोलें</button>
+        <div id="decryptedOutput" class="output-box"></div>
+
+        <div class="disclaimer">
+            <p><strong>कानूनी डिस्क्लेमर</strong>: QuoteShield आपके डेटा को AES-256 एन्क्रिप्शन और SHA-256 हैशिंग के साथ सुरक्षित करता है, जो GDPR, CCPA, भारत के DPDP Act, और अन्य अंतरराष्ट्रीय कानूनों के अनुरूप है। उपयोगकर्ता अपनी गुप्त कुंजी की सुरक्षा के लिए जिम्मेदार हैं। डेटा का दुरुपयोग रोकने के लिए इसे सुरक्षित रखें।</p>
+        </div>
+    </div>
+
+    <script>
+        function changeLanguage() {
+            const lang = document.getElementById('language').value;
+            if (lang === 'en') {
+                document.querySelector('h1').textContent = 'QuoteShield: Global Security Shield';
+                document.querySelectorAll('h3')[0].textContent = 'Secure Your Data';
+                document.querySelectorAll('h3')[1].textContent = 'Unlock Secured Data';
+                document.querySelectorAll('h3')[2].textContent = 'Double Quotes ("") - Global Security Guardian Symbol';
+                document.querySelector('.info p').innerHTML = `
+                    <strong>QuoteShield</strong> secures your online data with double quotes (""), recognized as the <strong>Global Security Guardian Symbol</strong>. Enter any link, article, code, or content, and wrap it in a robust security shield. This protocol complies with global laws (e.g., GDPR, DPDP Act).<br>
+                    Our GitHub: <a href="https://github.com/QuoteShield-Protocol" target="_blank">github.com/QuoteShield-Protocol</a>
+                `;
+                document.querySelector('.symbol-section p').textContent = 'The double quotes ("") are recognized globally as a guardian symbol. It represents online security, protecting every data under the QuoteShield Protocol.';
+                document.getElementById('inputData').placeholder = 'Enter data here (link, article, code, etc.)';
+                document.getElementById('encryptKey').placeholder = 'Enter secret key (keep it secure)';
+                document.getElementById('expiryDays').placeholder = 'Data expiry (in days, optional)';
+                document.getElementById('encryptedData').placeholder = 'Enter secured data here';
+                document.getElementById('decryptKey').placeholder = 'Enter secret key';
+                document.querySelector('.disclaimer p').innerHTML = `
+                    <strong>Legal Disclaimer</strong>: QuoteShield secures your data with AES-256 encryption and SHA-256 hashing, compliant with GDPR, CCPA, India's DPDP Act, and other international laws. Users are responsible for safeguarding their secret key. Keep it secure to prevent misuse of data.
+                `;
+            } else {
+                document.querySelector('h1').textContent = 'QuoteShield: वैश्विक सुरक्षा कवच';
+                document.querySelectorAll('h3')[0].textContent = 'अपना डेटा सुरक्षित करें';
+                document.querySelectorAll('h3')[1].textContent = 'सुरक्षित डेटा खोलें';
+                document.querySelectorAll('h3')[2].textContent = 'डबल कोट्स ("") - Global Security Guardian Symbol';
+                document.querySelector('.info p').innerHTML = `
+                    <strong>QuoteShield</strong> आपके ऑनलाइन डेटा को डबल कोट्स ("") के साथ सुरक्षित करता है, जो <strong>Global Security Guardian Symbol</strong> के रूप में मान्यता प्राप्त है। कोई भी लिंक, आर्टिकल, कोड, या सामग्री डालें, और इसे जटिल सुरक्षा कवच में लपेटें। यह प्रोटोकॉल सभी देशों के कानूनों (जैसे GDPR, DPDP Act) के अनुरूप है।<br>
+                    हमारा GitHub: <a href="https://github.com/QuoteShield-Protocol" target="_blank">github.com/QuoteShield-Protocol</a>
+                `;
+                document.querySelector('.symbol-section p').textContent = 'डबल कोट्स ("") को वैश्विक स्तर पर एक रक्षक प्रतीक के रूप में मान्यता दी गई है। यह ऑनलाइन सुरक्षा का प्रतीक है, जो QuoteShield Protocol के तहत हर डेटा को सुरक्षित करता है।';
+                document.getElementById('inputData').placeholder = 'यहां डेटा डालें (लिंक, आर्टिकल, कोड, आदि)';
+                document.getElementById('encryptKey').placeholder = 'गुप्त कुंजी डालें (सुरक्षित रखें)';
+                document.getElementById('expiryDays').placeholder = 'डेटा की समय-सीमा (दिनों में, वैकल्पिक)';
+                document.getElementById('encryptedData').placeholder = 'यहां सुरक्षित डेटा डालें';
+                document.getElementById('decryptKey').placeholder = 'गुप्त कुंजी डालें';
+                document.querySelector('.disclaimer p').innerHTML = `
+                    <strong>कानूनी डिस्क्लेमर</strong>: QuoteShield आपके डेटा को AES-256 एन्क्रिप्शन और SHA-256 हैशिंग के साथ सुरक्षित करता है, जो GDPR, CCPA, भारत के DPDP Act, और अन्य अंतरराष्ट्रीय कानूनों के अनुरूप है। उपयोगकर्ता अपनी गुप्त कुंजी की सुरक्षा के लिए जिम्मेदार हैं। डेटा का दुरुपयोग रोकने के लिए इसे सुरक्षित रखें।
+                `;
+            }
+        }
+
+        function encryptData() {
+            const data = document.getElementById('inputData').value;
+            const key = document.getElementById('encryptKey').value;
+            const expiryDays = document.getElementById('expiryDays').value;
+            const lang = document.getElementById('language').value;
+
+            if (!data || !key) {
+                document.getElementById('output').innerHTML = lang === 'hi' ? 
+                    'कृपया डेटा और गुप्त कुंजी दोनों डालें।' : 
+                    'Please enter both data and secret key.';
+                return;
+            }
+
+            // डेटा को डबल कोट्स में लपेटें
+            const quotedData = `"${data}"`;
+            // डेटा की अखंडता के लिए SHA-256 हैश
+            const hash = CryptoJS.SHA256(quotedData).toString();
+            // डेटा को AES-256 से एन्क्रिप्ट करें
+            const encrypted = CryptoJS.AES.encrypt(quotedData, key).toString();
+            // समय-सीमा जोड़ें (यदि दी गई हो)
+            const expiryInfo = expiryDays ? `डेटा की समय-सीमा: ${expiryDays} दिन` : 'कोई समय-सीमा नहीं';
+            const expiryInfoEn = expiryDays ? `Data expiry: ${expiryDays} days` : 'No expiry';
+
+            // आउटपुट में एन्क्रिप्टेड डेटा और हैश दिखाएं
+            document.getElementById('output').innerHTML = lang === 'hi' ? `
+                सुरक्षित डेटा: ${encrypted}<br>
+                डेटा हैश (SHA-256): ${hash}<br>
+                ${expiryInfo}<br>
+                इसे साझा करें, लेकिन कुंजी को गुप्त रखें।
+            ` : `
+                Secured Data: ${encrypted}<br>
+                Data Hash (SHA-256): ${hash}<br>
+                ${expiryInfoEn}<br>
+                Share this, but keep the key secret.
+            `;
+        }
+
+        function decryptData() {
+            const encrypted = document.getElementById('encryptedData').value;
+            const key = document.getElementById('decryptKey').value;
+            const lang = document.getElementById('language').value;
+
+            if (!encrypted || !key) {
+                document.getElementById('decryptedOutput').innerHTML = lang === 'hi' ? 
+                    'कृपया सुरक्षित डेटा और गुप्त कुंजी दोनों डालें।' : 
+                    'Please enter both secured data and secret key.';
+                return;
+            }
+
+            try {
+                // डेटा को डिक्रिप्ट करें
+                const decrypted = CryptoJS.AES.decrypt(encrypted, key).toString(CryptoJS.enc.Utf8);
+                // डिक्रिप्टेड डेटा की अखंडता जांचें
+                const hash = CryptoJS.SHA256(decrypted).toString();
+                document.getElementById('decryptedOutput').innerHTML = lang === 'hi' ? `
+                    खुला डेटा: ${decrypted}<br>
+                    डेटा हैश (SHA-256): ${hash}<br>
+                    अगर हैश मूल हैश से मेल खाता है, तो डेटा सुरक्षित है।
+                ` : `
+                    Unlocked Data: ${decrypted}<br>
+                    Data Hash (SHA-256): ${hash}<br>
+                    If the hash matches the original hash, the data is secure.
+                `;
+            } catch (e) {
+                document.getElementById('decryptedOutput').innerHTML = lang === 'hi' ? 
+                    'गलत कुंजी या अमान्य डेटा। कृपया सही कुंजी का उपयोग करें।' : 
+                    'Invalid key or data. Please use the correct key.';
+            }
+        }
+    </script>
+</body>
+</html>
